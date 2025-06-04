@@ -138,9 +138,9 @@ void initDeviceStreamState(DeviceIndex device) {
   using namespace sycl::ext::oneapi::property;
   // Need to align with StreamIdType.
   const std::vector<sycl::property_list> properties = {
-      {sycl::property::queue::in_order(), queue::priority_low()},
-      {sycl::property::queue::in_order(), queue::priority_normal()},
-      {sycl::property::queue::in_order(), queue::priority_high()}};
+      {sycl::property::queue::in_order(), sycl::property::queue::enable_profiling(), queue::priority_low()},
+      {sycl::property::queue::in_order(), sycl::property::queue::enable_profiling(), queue::priority_normal()},
+      {sycl::property::queue::in_order(), sycl::property::queue::enable_profiling(), queue::priority_high()}};
   TORCH_CHECK(
       properties.size() == max_compile_time_stream_priorities,
       "The number of stream priorities should be equal to max_compile_time_stream_priorities");
